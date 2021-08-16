@@ -1,0 +1,130 @@
+#include <iostream>
+using namespace std;
+
+class Record{
+	public:
+	string fecha;
+	string hora;
+	string nombreFuente;
+	string nombreDestino;
+    string ipSalida;
+    string ipDestino;
+    string puertoSalida;
+    string puertoDestino;
+
+	Record(string f, string h, string iS, string pS , string nF , string iD , string pD , string nD){
+		fecha=f;
+		hora=h;
+		ipSalida=iS;
+		puertoSalida=pS;
+		nombreFuente=nF;
+		ipDestino=iD;
+		puertoDestino=pD;
+		nombreDestino=nD;
+	}
+	
+	void imprimirRecord(){
+		cout << nombreFuente << endl;
+	}
+	
+};
+
+template<class T>
+class ConexionesComputadora:public Record{
+	public:
+	int ip;
+	string nombre;
+	string cE; //La ip de este equipo es la destino
+	string cS;
+
+    Nodo<string> *conexionesEntrantes;
+    Nodo<string> *conexionesSalientes;
+
+	ConexionesComputadora(int IP, string NOMBRE, string conexionesEntrantes, string conexionesSalientes){
+		ip=IP;
+		nombre=NOMBRE;
+		cE=conexionesEntrantes;
+		cS=conexionesSalientes;
+	}
+
+};
+
+template<class T>
+class Nodo{
+    public:
+    T value;
+	Nodo<T> *next;
+	Nodo<T> *prev;
+	
+	Nodo(T val){
+		value=val;
+		next=NULL;
+		prev=NULL;
+	}
+};
+	
+template <class T>
+class Stack:public ConexionesComputadora{
+	public:
+	Nodo<T> *top;
+	
+	Stack(){
+		top=NULL;
+	}
+	
+	void push(T ipDestino){
+		Nodo<T> *nuevo=new Nodo<T>(ipDestino);
+		if(top==NULL){
+			top=nuevo;
+		}else(nombreFuente==nombre){
+			nuevo->next=top;
+			top->prev=nuevo;
+			top=nuevo;
+            return nuevo
+		}
+	}
+
+    void leer(){
+        Nodo<T> *conexionesEntrantes=top;
+        if(top!=NULL){
+            return top->value;
+        }else{
+            cout << "no hay datos" << endl;
+        }
+		while(temp!=NULL){
+			temp=top;
+			cout<<temp->ipDestino<<endl;
+			temp=temp->next;
+		}
+    }
+
+    void pop(){
+		if(top!=NULL){
+			Nodo<T> *aBorrar=top;
+			top=top->next;
+			top->prev=NULL;
+			delete aBorrar;
+		}
+	}
+
+    void print(){
+		Nodo<T> *temp=top;
+		while(temp!=NULL){
+			cout<<temp->value<<",";
+			temp=temp->next;
+		}
+		cout<<endl;
+    }
+};
+
+int main(){
+	("/Volumes/CARO_DRIVE/Programacion/VStudio C/Programacionestructuras/Reto/nuevo7.csv");
+	Stack<int> s;
+	s.push(30);
+	s.push(20);
+	s.push(10);
+	s.print();
+	s.leer();
+	s.print();
+}
+
